@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "troca-local-pc33",
+  "main": "src/worker.js",
+  "compatibility_date": "2025-03-01",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "r2_buckets": [
+    {
+      "binding": "FILES_BUCKET",
+      "bucket_name": "troca-local-files"
+    }
+  ],
+  "triggers": {
+    "crons": ["15 * * * *"]
+  }
+}

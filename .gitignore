@@ -1,0 +1,7 @@
+received/
+__pycache__/
+*.py[cod]
+node_modules/
+.wrangler/
+.dev.vars*
+public/app.js

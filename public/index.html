@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101412">
+  <title>Troca Local — arquivos por QR code</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topline">
+      <span class="brand-mark" aria-hidden="true">↗</span>
+      <span>TROCA LOCAL</span>
+      <span class="online"><i></i> ONLINE</span>
+    </header>
+
+    <section id="welcome" class="card welcome" hidden>
+      <p class="eyebrow">SEM APLICATIVO · SÓ PELO NAVEGADOR</p>
+      <h1>Seus arquivos,<br><em>de um aparelho a outro.</em></h1>
+      <p class="lede">Crie uma sessão, escaneie o QR code com o celular e envie ou baixe arquivos. Funciona mesmo em redes diferentes.</p>
+      <button id="create-session" class="primary">Criar transferência <span aria-hidden="true">→</span></button>
+      <p class="fineprint">Os arquivos ficam disponíveis por até 24 horas. Compartilhe o link apenas com quem deve ter acesso.</p>
+    </section>
+
+    <section id="loading" class="card message-card" hidden>
+      <div class="spinner" aria-hidden="true"></div>
+      <p id="loading-text">Preparando sua sessão…</p>
+    </section>
+
+    <section id="session" class="card session-card" hidden>
+      <div class="session-heading">
+        <div>
+          <p class="eyebrow">SESSÃO TEMPORÁRIA</p>
+          <h1>Envie ou receba<br><em>seus arquivos.</em></h1>
+        </div>
+        <span class="expiry">EXPIRA EM 24H</span>
+      </div>
+
+      <div class="share-panel">
+        <div class="qr-wrap"><canvas id="qr" aria-label="QR code para abrir esta sessão"></canvas></div>
+        <div class="share-info">
+          <p class="section-label">ESCANEIE PARA ABRIR NO OUTRO APARELHO</p>
+          <p class="share-note">O QR code contém o link privado desta sessão.</p>
+          <div class="link-row">
+            <a id="share-link" href="#" target="_blank" rel="noreferrer">Carregando link…</a>
+            <button id="copy-link" class="copy-button" type="button" aria-label="Copiar link">Copiar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="upload-area">
+        <div>
+          <p class="section-label">ADICIONAR ARQUIVOS</p>
+          <p class="share-note">Até 10 arquivos por vez · máximo de 50 MB cada</p>
+        </div>
+        <form id="upload-form">
+          <label class="file-picker" for="file-input"><span>Escolher arquivos</span><span id="file-count">Nenhum arquivo escolhido</span></label>
+          <input id="file-input" type="file" multiple hidden>
+          <button id="upload-button" class="primary upload-button" type="submit">Enviar arquivos <span aria-hidden="true">↑</span></button>
+        </form>
+        <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="files-heading">
+        <div><p class="section-label">ARQUIVOS DA SESSÃO</p><p id="file-summary" class="share-note">Atualizando lista…</p></div>
+        <button id="refresh-files" class="text-button" type="button">Atualizar</button>
+      </div>
+      <ul id="file-list" class="file-list"><li class="empty">Carregando arquivos…</li></ul>
+      <footer>O link é privado: qualquer pessoa que o tiver poderá enviar e baixar arquivos. Os arquivos são removidos automaticamente após a expiração da sessão.</footer>
+    </section>
+
+    <section id="error" class="card message-card error-card" hidden>
+      <p class="eyebrow">NÃO FOI POSSÍVEL ABRIR</p>
+      <h1 id="error-title">Sessão indisponível</h1>
+      <p id="error-message" class="lede">O link pode ter expirado ou estar incorreto.</p>
+      <button id="back-home" class="secondary" type="button">Voltar ao início</button>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <footer class="site-footer">Transferências protegidas por link temporário <span>·</span> Feito para uso pessoal</footer>
+  </main>
+</body>
+</html>
