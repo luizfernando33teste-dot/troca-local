@@ -28,6 +28,14 @@ Abra no navegador do notebook o endereço `Painel deste notebook` impresso no te
 
 ## Acessar de outra rede
 
+No notebook Arch Linux, instale o cliente do túnel uma vez:
+
+```sh
+sudo pacman -S cloudflared
+```
+
+Em outras distribuições, siga a documentação oficial de instalação. Isso não ativa o R2 nem exige uma assinatura de armazenamento; o túnel temporário encaminha as conexões ao notebook. No celular, basta abrir o QR code no navegador.
+
 Com `cloudflared` instalado, execute:
 
 ```sh
